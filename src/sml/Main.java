@@ -21,11 +21,13 @@ public class Main {
 
 			System.out.println("Here is the program; it has " + m.getProgram().size() + " instructions.");
 			System.out.println(m);
-
-			System.out.println("Beginning program execution.");
-			m.execute();
-			System.out.println("Ending program execution.");
-
+			//stops run if no data (possible instructions) present in file
+			//test small zero.txt
+			if(m.getProgram().size() != 0 ) {
+				System.out.println("Beginning program execution.");
+				m.execute();
+				System.out.println("Ending program execution.");
+			}
 			System.out.println("Values of registers at program termination:" + m.getRegisters() + ".");
 		}
 		catch (IOException e) {

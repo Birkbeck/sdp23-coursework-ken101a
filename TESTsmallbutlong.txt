@@ -1,0 +1,5 @@
+mov EAX 114223215
+out EAX
+mov EBX 1
+j1: sub EAX EBX
+jnz EAX j1

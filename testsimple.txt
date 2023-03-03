@@ -1,0 +1,20 @@
+mov EAX 1
+out EAX
+mov EBX 2
+add EAX EBX
+sub EBX EBX
+mov ECX 3
+out ECX
+mov EDX 4
+add ECX EDX
+sub EDX EDX
+mov ESP 5
+out ESP
+mov EBP 6
+add ESP EBP
+sub EBP EBP
+mov ESI 7
+out ESI
+mov EDI 8
+add ESI EDI
+sub EDI EDI

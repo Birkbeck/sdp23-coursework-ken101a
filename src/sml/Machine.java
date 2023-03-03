@@ -2,7 +2,6 @@ package sml;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static sml.Instruction.NORMAL_PROGRAM_COUNTER_UPDATE;
@@ -14,9 +13,7 @@ import static sml.Instruction.NORMAL_PROGRAM_COUNTER_UPDATE;
  *
  */
 public final class Machine {
-
-
-	private final List<String> ls = new ArrayList<>();
+	private final List<String> labelpcstore = new ArrayList<>();
 	private final Labels labels = new Labels();
 
 	private final List<Instruction> program = new ArrayList<>();
@@ -40,12 +37,12 @@ public final class Machine {
 		registers.clear();
 		while (programCounter < program.size()) {
 			Instruction ins = program.get(programCounter);
-			//
+			//collects all label PC's addresses for use in jump (jnz) instructions
+			//collects and stores label, and place its program counter addr in the next store
+			// ie find the label in the list and the next is the PC for found label KISS
 			if (ins.label != null ){
-				ls.add(ins.label);
-				ls.add(ls.size() , String.valueOf(programCounter));
-				//System.out.println(" label:    " + ls.get(ls.indexOf(ins.label)));
-				//System.out.println(" label pc: " + ls.get(ls.indexOf(ins.label) +1));
+				labelpcstore.add(ins.label);
+				labelpcstore.add(labelpcstore.size() , String.valueOf(programCounter));
 			}
 			//
 			int programCounterUpdate = ins.execute(this);
@@ -55,7 +52,7 @@ public final class Machine {
 		}
 	}
 	public int getProgramCounter(String label) {
-		return Integer.parseInt(ls.get(ls.indexOf(label) +1));
+		return Integer.parseInt(labelpcstore.get(labelpcstore.indexOf(label) +1));
 	}
 
 	public Labels getLabels() {
@@ -86,31 +83,5 @@ public final class Machine {
 
 	// TODO: use pattern matching for instanceof
 	// https://docs.oracle.com/en/java/javase/14/language/pattern-matching-instanceof-operator.html
-	@Override
-	public boolean equals(Object o) {
-		//System.out.println("equals 1: " + Integer.parseInt(ls.get(ls.indexOf(o) + 1)));
-		return false ;
-	}
 
-/*
-@Override
-	public boolean equals(Object o) {
-		if (o instanceof Machine) {
-			//
-			Machine other = (Machine) o;
-			return Objects.equals(this.labels, other.labels)
-					&& Objects.equals(this.program, other.program)
-					&& Objects.equals(this.registers, other.registers)
-					&& this.programCounter == other.programCounter;
-		}
-		return false;
-	}
-
- */
-
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(labels, program, registers, programCounter);
-	}
 }

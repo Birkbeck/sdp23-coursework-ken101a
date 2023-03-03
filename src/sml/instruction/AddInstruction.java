@@ -7,7 +7,14 @@ import sml.RegisterName;
 // TODO: write a JavaDoc for the class
 
 /**
- * @author
+ * addInstruction
+ * subclass of the instruction class
+ * created(instance off) by Translator Class
+ *
+ * take single line from input file opcode is "add"
+ * adds the two values in registers
+ *
+ * @author KA
  */
 
 public class AddInstruction extends Instruction {
