@@ -30,7 +30,7 @@ public final class Translator {
     }
 
     // translate the small program in the file into lab (the labels) and
-    // prog (the program)
+    // program (the program)
     // return "no errors were detected"
 
     public void readAndTranslate(Labels labels, List<Instruction> program) throws IOException {
@@ -109,10 +109,8 @@ public final class Translator {
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
-            default -> {
+            default ->
                 System.out.println("Unknown instruction: " + opcode);
-            }
-
         }
         return null;
     }
