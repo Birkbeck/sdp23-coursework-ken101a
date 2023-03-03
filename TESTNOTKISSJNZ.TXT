@@ -1,0 +1,9 @@
+mov ECX 1
+mov EAX 4
+l2: mov EBX 16
+l1: sub EBX ECX
+add EBP ECX
+jnz EBX l1
+sub EAX ECX
+add ESP ECX
+jnz EAX l2

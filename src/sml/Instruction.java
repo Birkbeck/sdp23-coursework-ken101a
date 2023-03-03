@@ -38,14 +38,15 @@ public abstract class Instruction {
 	 *
 	 * @param machine the machine the instruction runs on
 	 * @return the new program counter (for jump instructions)
-	 *          or NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
-	 *          the instruction with the next address is to be executed
+	 * or NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
+	 * the instruction with the next address is to be executed
 	 */
 
 	public abstract int execute(Machine machine);
 
 	protected String getLabelString() {
-		return (getLabel() == null) ? "" : getLabel() + ": ";
+		// added tab(4 spaces) for null condition to give better user presentation
+		return (getLabel() == null) ? "    " : getLabel() + ": ";
 	}
 
 	// TODO: What does abstract in the declaration below mean?

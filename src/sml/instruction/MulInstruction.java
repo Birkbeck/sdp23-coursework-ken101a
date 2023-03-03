@@ -17,6 +17,7 @@ public class MulInstruction extends Instruction {
     }
     @Override
     public int execute(Machine m) {
+       // System.out.println("mull f3...");
         int value1 = m.getRegisters().get(result);
         int value2 = m.getRegisters().get(source);
         m.getRegisters().set(result, value1 * value2);

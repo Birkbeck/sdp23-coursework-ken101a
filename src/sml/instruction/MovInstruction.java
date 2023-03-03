@@ -4,8 +4,7 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
-public class MovInstruction extends Instruction {
-    private final RegisterName result;
+public class MovInstruction extends Instruction {private final RegisterName result;
     private final int source;
 
     public static final String OP_CODE = "mov";

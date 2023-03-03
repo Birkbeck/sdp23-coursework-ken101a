@@ -6,23 +6,25 @@ import sml.RegisterName;
 
 public class JnzInstruction extends Instruction {
     private final RegisterName result;
-    private final String labelname;
+    private final String reflabel;
 
     public static final String OP_CODE = "jnz";
 
-    public JnzInstruction(String label, RegisterName result, String labelname) {
+    public JnzInstruction(String label, RegisterName result, String reflabel) {
         super(label, OP_CODE);
         this.result = result;
-        this.labelname = labelname;
+        this.reflabel = reflabel;
     }
-    @Override
+   @Override
     public int execute(Machine m) {
-        m.getRegisters().set(result, source);
+        if (m.getRegisters().get(result) != 0) {
+            return m.getProgramCounter(reflabel);
+        }
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
     @Override
     public String toString() {
-        return getLabelString() + getOpcode() + " " + result + " " + source;
+        return getLabelString() + getOpcode() + " " + result + " " + reflabel;
     }
 
 }

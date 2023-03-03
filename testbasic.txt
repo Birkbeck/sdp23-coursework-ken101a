@@ -1,0 +1,12 @@
+mov EAX 2
+mov EBX 3
+mov ECX 4
+mov EDX 5
+add EAX EBX
+add ECX EDX
+mul EBX EDX
+div EDX EAX
+out EAX
+out ECX
+out EBX
+out EDX

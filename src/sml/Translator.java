@@ -24,6 +24,7 @@ public final class Translator {
     // line contains the characters in the current line that's not been processed yet
     private String line = "";
 
+
     public Translator(String fileName) {
         this.fileName =  fileName;
     }
@@ -99,7 +100,7 @@ public final class Translator {
             case JnzInstruction.OP_CODE -> {
                 String r = scan();
                 String s = scan();
-                return new JnzInstruction(label, Register.valueOf(r), Integer.parseInt(s));
+                return new JnzInstruction(label, Register.valueOf(r),s);
             }
             // TODO: add code for all other types of instructions
 
@@ -111,6 +112,7 @@ public final class Translator {
             default -> {
                 System.out.println("Unknown instruction: " + opcode);
             }
+
         }
         return null;
     }
